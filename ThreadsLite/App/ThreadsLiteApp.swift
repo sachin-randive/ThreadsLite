@@ -11,7 +11,7 @@ import SwiftUI
 struct ThreadsLiteApp: App {
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            ThreadsTabView()
         }
     }
 }

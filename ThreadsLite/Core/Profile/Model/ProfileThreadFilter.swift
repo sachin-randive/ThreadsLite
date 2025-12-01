@@ -10,7 +10,7 @@ import Foundation
 enum ProfileThreadFilter: Int, CaseIterable, Identifiable {
     case threads
     case replies
-    case likes
+   // case likes
     
     var title: String {
         switch self {
@@ -18,8 +18,8 @@ enum ProfileThreadFilter: Int, CaseIterable, Identifiable {
             return "Threads"
         case .replies:
             return "Replies"
-        case .likes:
-            return "likes"
+//        case .likes:
+//            return "likes"
         }
     }
     var id: Int { return self.rawValue }
