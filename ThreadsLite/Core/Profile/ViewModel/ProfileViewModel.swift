@@ -18,7 +18,7 @@ class ProfileViewModel: ObservableObject {
     
     private func setupSubscribers() {
         UserService.shared.$currentUser.sink { [weak self] user in
-            if let user = user {
+            DispatchQueue.main.async {
                 self?.currentUser = user
             }
             print("Debug: User in view model from combine is \(String(describing: user))")
