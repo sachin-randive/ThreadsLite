@@ -1,30 +1,42 @@
 //
-//  ProfileView.swift
+//  CurrentUserProfile.swift
 //  ThreadsLite
 //
-//  Created by Sachin Randive on 30/11/25.
+//  Created by Sachin Randive on 04/12/25.
 //
 
 import SwiftUI
 
-struct ProfileView: View {
-    let user: User
-   
+struct CurrentUserProfileView: View {
+    
+    @StateObject var viewModel = CurrentUserProfileViewModel()
+    
+    private var currentUser: User? {
+        return viewModel.currentUser
+    }
+    
     var body: some View {
+        NavigationStack {
             ScrollView( showsIndicators: false) {
                 VStack(spacing: 20) {
-                    ProfileHeaderView(user: user)
+                    if let user = currentUser {
+                        ProfileHeaderView(user: user)
+                    }
                     //outer vstack
                     Button(action: {
                         
                     }) {
-                        Text("Follow")
+                        Text("Edit Profile")
                             .font(.subheadline)
                             .fontWeight(.semibold)
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                             .frame(width: 352, height: 32)
-                            .background(Color.black)
+                            .background(Color.white)
                             .cornerRadius(10)
+                            .overlay(content: {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(style:  StrokeStyle(lineWidth: 1))
+                            })
                     }
                     UserContentListView()
                 }
@@ -40,12 +52,16 @@ struct ProfileView: View {
                 }
             }
             .padding(.horizontal)
+        }
     }
 }
 
+//#Preview {
+//    CurrentUserProfile()
+//}
 
-struct ProfileView_Preview: PreviewProvider {
+struct CurrentUserProfile_Preview: PreviewProvider {
     static var previews: some View {
-        ProfileView(user: dev.user)
+        CurrentUserProfileView()
     }
 }
