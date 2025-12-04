@@ -23,5 +23,8 @@ class UserService {
         
         print("DEBUG: Current User Fetched; - \(user)")
     }
+    func resetCurrentUser() {
+        self.currentUser = nil
+    }
 }
 
